@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+.red {
+    border: 5px solid black;
+    border-radius: 50%;
+    background-color: rgb(255, 0, 0);
+    width: 600px;
+    height: 600px;
+}
+.lightRed{
+    background-color: brown;
+}
+footer {
+    padding-top: 40px;
+}

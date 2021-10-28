@@ -2,16 +2,20 @@ export default {
   props: ['Pid'],
   data() {
     return {
-      time: 3000,
+      time: 3,
       currentTimerTime: 3,
       activeColor: false,
-      flashing: false,
-      timeFlashing: 3
+      timeFlashing: 3,
+      yellowTimeout: ''
     }
   },
   methods: {
-    changeToColor() {
-      setTimeout(() => { this.$router.push({path: '/' + (!this.Pid ? localStorage.lPid : this.Pid)}) }, this.time)
+    changeToColor(time) {
+      this.yellowTimeout = setTimeout(() => {
+        if (this.$route.name == 'Yellow') {
+          this.$router.push({path: '/' + (!this.Pid ? localStorage.lPid : this.Pid)})
+        } 
+      }, time * 1000)
     },
     flashingYellow() {
       setInterval(() => {
@@ -19,25 +23,43 @@ export default {
       }, 500);
     },
     timerYellow() {
+      let flashing = false
       const intervalId = setInterval(() => {
-        this.currentTimerTime -= 1
-        if (this.currentTimerTime <= this.timeFlashing && !this.flashing) {
-          this.flashing = true
-          this.flashingYellow()
-        }
-        if (this.currentTimerTime == 0) {
-          clearInterval(intervalId)
+        if (this.$route.name == 'Yellow') {
+          this.currentTimerTime -= 1
+          localStorage.curTTY = this.currentTimerTime
+          if (this.currentTimerTime <= this.timeFlashing && !flashing) {
+            this.flashing = true
+            this.flashingYellow()
+          }
+          if (this.currentTimerTime == 0) {
+            localStorage.curTTY = this.time
+            clearInterval(intervalId)
+          }
         }
       }, 1000);
     }
   },
   mounted: function() {
-    this.changeToColor()
+    localStorage.curTTR = 10
+    localStorage.curTTG = 15
+    if (this.currentTimerTime > localStorage.curTTY) {
+      this.currentTimerTime = localStorage.curTTY 
+      this.changeToColor(localStorage.curTTY)
+    }
+    else {
+      this.changeToColor(this.time)
+    }
     this.timerYellow()
   },
   computed: {
     timerTime(){ 
       return this.currentTimerTime
+    }
+  },
+  beforeDestroy() {
+    if (this.yellowTimeout) {
+      clearTimeout(this.yellowTimeout);
     }
   }
     

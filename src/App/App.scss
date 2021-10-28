@@ -48,16 +48,25 @@ body {
 }
 .container_small-traffic_cirk {
   border: 5px solid black;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
 }
-.color-red {
+.colorRed {
   background-color: brown;
 }
-.color-yellow {
+.colorRedFlafhing {
+  background-color: rgb(255, 0, 0);
+}
+.colorYellow {
   background-color: rgb(185, 185, 5);
 }
-.color-green {
+.colorYellowFlafhing {
+  background-color: yellow
+}
+.colorGreen {
   background-color: green;
+}
+.colorGreenFlafhing {
+  background-color: rgb(0, 255, 0);
 }

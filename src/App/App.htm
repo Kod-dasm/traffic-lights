@@ -4,9 +4,9 @@
     </main>
     <aside class="container">
         <div class="container_small-traffic">
-            <router-link to="/red" class="container_small-traffic_cirk color-red"></router-link>
-            <router-link to="/yellow" class="container_small-traffic_cirk color-yellow"></router-link>
-            <router-link to="/green" class="container_small-traffic_cirk color-green"></router-link>
+            <router-link to="/red" class="container_small-traffic_cirk colorRed" :class="{ colorRedFlafhing: isRed }"></router-link>
+            <router-link to="/yellow" class="container_small-traffic_cirk colorYellow" :class="{ colorYellowFlafhing: isYellow }"></router-link>
+            <router-link to="/green" class="container_small-traffic_cirk colorGreen" :class="{ colorGreenFlafhing: isGreen }"></router-link>
         </div>
         <div class="leg-traffic-light"></div>
     </aside>
